@@ -6,5 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'angular-udemy';
+  public toggleButton = false;
+  public counterArray: string[] = [];
+  public counter = 0;
+
+  changeParagraphStyle() {
+    this.toggleButton=!this.toggleButton;
+    this.counter++;
+    const date = new Date();
+    this.counterArray.push(date.toString())
+  }
 }
