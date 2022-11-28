@@ -1,22 +1,13 @@
-:host{
-  margin: 10px;
+.button{
   padding: 10px;
-  box-sizing: border-box;
+  border-radius: 3px;
+  font-size: 18px;
 }
-p{
-  margin-left: 20px;
-  padding: 0;
+p.action{
+  font-size: 20px;
+  font-weight: 700;
+  font-style: italic;
 }
-button{
-  margin-left: 20px;
-  border-radius: 5px;
-  padding: 10px;
-  background-color: lightcyan;
-}
-.active{
-  background-color: darkblue;
+.whiteText{
   color: #fff;
-}
-.active:hover{
-  background-color: blueviolet;
 }
