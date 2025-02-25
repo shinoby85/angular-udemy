@@ -1,6 +1,12 @@
 import {Component, Input, output} from '@angular/core';
 import {DUMMY_USERS} from "../dummy-users"
 
+interface User {
+  id: string,
+  name: string,
+  avatar: string
+}
+
 const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
 
 @Component({
@@ -11,7 +17,7 @@ const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
   styleUrl: './user.component.css'
 })
 export class UserComponent {
-  @Input({required: true}) user!: { id: string, name: string, avatar: string };
+  @Input({required: true}) user!: User;
   select = output<string>();
 
   get imagePath() {
