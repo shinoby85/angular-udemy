@@ -2,19 +2,19 @@
 <main>
   <ul *ngIf="users" id="users">
     <li>
-      <app-user (select)="onSelectUser($event)" [avatar]="users[0].avatar" [id]="users[0].id" [name]="users[0].name"/>
+      <app-user (select)="onSelectUser($event)" [user]="users[0]"/>
     </li>
     <li>
-      <app-user (select)="onSelectUser($event)" [avatar]="users[1].avatar" [id]="users[1].id" [name]="users[1].name"/>
+      <app-user (select)="onSelectUser($event)" [user]="users[1]"/>
     </li>
     <li>
-      <app-user (select)="onSelectUser($event)" [avatar]="users[2].avatar" [id]="users[2].id" [name]="users[2].name"/>
+      <app-user (select)="onSelectUser($event)" [user]="users[2]"/>
     </li>
     <li>
-      <app-user (select)="onSelectUser($event)" [avatar]="users[3].avatar" [id]="users[3].id" [name]="users[3].name"/>
+      <app-user (select)="onSelectUser($event)" [user]="users[3]"/>
     </li>
     <li>
-      <app-user (select)="onSelectUser($event)" [avatar]="users[4].avatar" [id]="users[4].id" [name]="users[4].name"/>
+      <app-user (select)="onSelectUser($event)" [user]="users[4]"/>
     </li>
   </ul>
 </main>
