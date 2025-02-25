@@ -3,6 +3,7 @@ import {HeaderComponent} from "./header/header.component";
 import {UserComponent} from "./user/user.component";
 import {DUMMY_USERS} from "./dummy-users";
 import {NgIf} from "@angular/common";
+import {TasksComponent} from "./tasks/tasks.component";
 
 @Component({
   selector: 'app-root',
@@ -10,16 +11,18 @@ import {NgIf} from "@angular/common";
   imports: [
     HeaderComponent,
     UserComponent,
-    NgIf
+    NgIf,
+    TasksComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent {
   users = DUMMY_USERS;
+  selectedUserName: string = ''
 
   onSelectUser(id: string) {
-    console.log('users selected id: ' + id);
+    this.selectedUserName = this.users.find(user => user.id === id)!.name;
   }
 }
 
