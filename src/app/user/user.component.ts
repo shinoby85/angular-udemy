@@ -1,6 +1,8 @@
 import {Component, Input, output} from '@angular/core';
 import {DUMMY_USERS} from "../dummy-users"
 
+// type User = { id: string, name: string, avatar: string }
+
 interface User {
   id: string,
   name: string,
