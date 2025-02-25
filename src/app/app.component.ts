@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {HeaderComponent} from "./header/header.component";
 import {UserComponent} from "./user/user.component";
 import {DUMMY_USERS} from "./dummy-users";
-import {NgForOf, NgIf} from "@angular/common";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-root',
@@ -10,14 +10,17 @@ import {NgForOf, NgIf} from "@angular/common";
   imports: [
     HeaderComponent,
     UserComponent,
-    NgIf,
-    NgForOf
+    NgIf
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent {
   users = DUMMY_USERS;
+
+  onSelectUser(id: string) {
+    console.log('users selected id: ' + id);
+  }
 }
 
 
