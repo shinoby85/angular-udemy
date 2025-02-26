@@ -5,6 +5,12 @@ import {DUMMY_USERS} from "./dummy-users";
 import {NgIf} from "@angular/common";
 import {TasksComponent} from "./tasks/tasks.component";
 
+export interface User {
+  id: string,
+  name: string,
+  avatar: string,
+}
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -19,10 +25,10 @@ import {TasksComponent} from "./tasks/tasks.component";
 })
 export class AppComponent {
   users = DUMMY_USERS;
-  selectedUserName?: string
+  selectedUser?: User
 
   onSelectUser(id: string) {
-    this.selectedUserName = this.users.find(user => user.id === id)!.name;
+    this.selectedUser = this.users.find(user => user.id === id)!;
   }
 }
 
