@@ -10,7 +10,7 @@ export class TasksService {
   private tasks = DUMMY_TASKS;
 
   getUserTasks(userId: string): Task[] {
-    return this.tasks.filter((task) => task.id === userId);
+    return this.tasks.filter((task) => task.userId === userId);
   }
 
   addTask(taskData: NewTask, userId: string) {
