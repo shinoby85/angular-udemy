@@ -20,6 +20,7 @@ label {
   font-size: 0.5rem;
   font-weight: bold;
   text-transform: uppercase;
+  width: 50%;
 }
 
 input {
