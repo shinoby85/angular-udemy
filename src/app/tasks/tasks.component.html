@@ -14,7 +14,7 @@
     @for (task of selectedUserTasks; track task.id) {
       @if (task.userId === user.id) {
         <li>
-          <app-task [task]="task" (complete)="onCompleteTask($event)"></app-task>
+          <app-task [task]="task"></app-task>
         </li>
       }
     }
