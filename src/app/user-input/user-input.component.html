@@ -2,21 +2,21 @@
   <p class="input-group">
     <label for="initialInvestment">
       INITIAL INVESTMENT
-      <input [(ngModel)]="initialInvestment" [ngModelOptions]="{standalone: true}" id="initialInvestment" type="number">
+      <input [(ngModel)]="initialInvestment" id="initialInvestment" name="initialInvestment" type="number">
     </label>
     <label for="annualInvestment">
       ANNUAL INVESTMENT
-      <input [(ngModel)]="annualInvestment" [ngModelOptions]="{standalone: true}" id="annualInvestment" type="number">
+      <input [(ngModel)]="annualInvestment" id="annualInvestment" name="annualInvestment" type="number">
     </label>
   </p>
   <p class="input-group">
     <label for="expectedReturn">
       EXPECTED RETURN
-      <input [(ngModel)]="expectedReturn" [ngModelOptions]="{standalone: true}" id="expectedReturn" type="number">
+      <input [(ngModel)]="expectedReturn" id="expectedReturn" name="expectedReturn" type="number">
     </label>
     <label for="duration">
       DURATION
-      <input [(ngModel)]="duration" [ngModelOptions]="{standalone: true}" id="duration" type="number">
+      <input [(ngModel)]="duration" id="duration" name="duration" type="number">
     </label>
   </p>
   <button type="submit">CALCULATE</button>
