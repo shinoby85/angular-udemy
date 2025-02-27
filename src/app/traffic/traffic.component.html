@@ -1,0 +1,17 @@
+@if (dummyTrafficData && maxTraffic) {
+  <article>
+    <header>
+      <img alt="A globe" src="globe.png"/>
+      <h2>Traffic</h2>
+    </header>
+    <div id="traffic">
+      <p>Last 7 days</p>
+
+      <div id="chart">
+        @for (dataPoint of dummyTrafficData; track dataPoint.id) {
+          <div [style.height]="(dataPoint.value / maxTraffic) * 100 + '%'"></div>
+        }
+      </div>
+    </div>
+  </article>
+}
