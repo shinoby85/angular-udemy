@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable, signal} from '@angular/core';
 import {IAnnualData, ICalculateData} from "./investment.model";
 import {calculateInvestmentResults} from "../investment-results";
 
@@ -6,15 +6,16 @@ import {calculateInvestmentResults} from "../investment-results";
   providedIn: 'root'
 })
 export class InvestmentService {
-  private _calculateData?: ICalculateData;
+  private _calculateData = signal<ICalculateData | undefined>(undefined);
 
   setCalculateData(data: ICalculateData) {
-    this._calculateData = {...data};
+    this._calculateData.set({...data});
   }
 
   getInvestmentResult(): IAnnualData[] | undefined {
-    if (this._calculateData) {
-      return calculateInvestmentResults(this._calculateData);
+    const calculateData = this._calculateData();
+    if (calculateData) {
+      return calculateInvestmentResults(calculateData);
     }
     return undefined;
   }
