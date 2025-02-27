@@ -9,6 +9,13 @@ export class TasksService {
 
   private tasks = DUMMY_TASKS;
 
+  constructor() {
+    const tasks = localStorage.getItem("tasks");
+    if (tasks) {
+      this.tasks = JSON.parse(tasks);
+    }
+  }
+
   getUserTasks(userId: string): Task[] {
     return this.tasks.filter((task) => task.userId === userId);
   }
@@ -19,9 +26,15 @@ export class TasksService {
       userId,
       ...taskData
     });
+    this.setTasks();
   }
 
   removeTask(taskId: string) {
     this.tasks = this.tasks.filter((task) => task.id !== taskId);
+    this.setTasks();
+  }
+
+  private setTasks() {
+    localStorage.setItem("tasks", JSON.stringify(this.tasks));
   }
 }
