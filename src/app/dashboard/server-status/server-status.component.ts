@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-server-status',
@@ -8,5 +8,5 @@ import {Component, Input} from '@angular/core';
   styleUrl: './server-status.component.css'
 })
 export class ServerStatusComponent {
-  @Input({required: true}) currentStatus?: string;
+  currentStatus = 'online';
 }
