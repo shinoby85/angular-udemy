@@ -7,7 +7,19 @@ import {Component, input, ViewEncapsulation} from '@angular/core';
   templateUrl: './control.component.html',
   styleUrl: './control.component.css',
   encapsulation: ViewEncapsulation.None,
+  host: {
+    class: 'control',
+    '(click)': 'onClick()'
+  }
 })
 export class ControlComponent {
+  // @HostBinding('class') className = 'control';
+  // @HostListener('click', ['$event']) onClick(event: MouseEvent) {
+  //   console.log('click');
+  // }
   label = input<string>();
+
+  onClick() {
+    console.log('Clicked!!!');
+  }
 }
