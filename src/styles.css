@@ -10,25 +10,28 @@ html {
 
 body {
   margin: 0;
-  background-color: #c0bdc3;
+  background-color: #212022;
 }
 
-main {
-  width: 80%;
-  margin: 3rem 10%;
-}
-
-#dashboard {
+#buttons {
+  margin: 2rem auto;
+  text-align: center;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 1.5rem;
-  max-width: 85rem;
+  justify-content: center;
+  gap: 2rem;
 }
 
-@media (min-width: 768px) {
-  #dashboard {
-    flex-direction: row;
-  }
+button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: 2px solid #dad6dd;
+  background-color: #dad6dd;
+  color: #212022;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: #d0a7fa;
+  border-color: #d0a7fa;
 }
