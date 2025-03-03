@@ -1,6 +1,6 @@
 <div
-  id="rect"
-  [style.width]="'200px'"
-  [style.height]="'100px'"
   (click)="onReset()"
+  [style.height.px]="size?.height"
+  [style.width.px]="size?.width"
+  id="rect"
 ></div>
