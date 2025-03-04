@@ -1,4 +1,4 @@
-import {Directive} from '@angular/core';
+import {Directive, ElementRef, inject, input} from '@angular/core';
 
 @Directive({
   selector: 'a[appSaveLink]',
@@ -8,6 +8,8 @@ import {Directive} from '@angular/core';
   }
 })
 export class SaveLinkDirective {
+  queryParam = input('myapp', {alias: 'appSaveLink'});
+  private hostElementRef = inject<ElementRef<HTMLAnchorElement>>(ElementRef);
 
   constructor() {
     console.log('SaveLinkDirective is active!');
@@ -16,6 +18,8 @@ export class SaveLinkDirective {
   onConfirmLeavePage(event: MouseEvent) {
     const wantsToLeave = window.confirm('Are you sure you want to leave?');
     if (wantsToLeave) {
+      const address = this.hostElementRef.nativeElement.href;
+      this.hostElementRef.nativeElement.href = address;
       return;
     }
     event.preventDefault();
