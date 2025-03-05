@@ -1,11 +1,36 @@
-import { Component } from '@angular/core';
-
-import { TasksComponent } from './tasks/tasks.component';
+import {Component} from '@angular/core';
+import {DatePipe, DecimalPipe} from "@angular/common";
+import {TemperaturePipe} from "./temperature.pipe";
+import {SortPipe} from "./sort.pipe";
 
 @Component({
   selector: 'app-root',
   standalone: true,
   templateUrl: './app.component.html',
-  imports: [TasksComponent],
+  imports: [
+    DatePipe,
+    DecimalPipe,
+    TemperaturePipe,
+    SortPipe
+  ]
 })
-export class AppComponent {}
+export class AppComponent {
+  currentDate = new Date();
+  currentTemperaturs = {
+    berlin: 4.2749812,
+    newYork: 18.1214,
+    paris: 72.1209001,
+    chicago: 65.0775238,
+  };
+
+  historicTemperatures = [
+    25, 37, 19, -4, 28, 21, 19, 28, 33, 31, 9, 11, 5, -12, -5,
+  ];
+
+  onReset(index: number) {
+    const newArray = [...this.historicTemperatures];
+    newArray[index] = 18;
+    this.historicTemperatures = newArray;
+
+  }
+}
