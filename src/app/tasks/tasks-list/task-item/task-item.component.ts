@@ -1,7 +1,7 @@
 import {Component, computed, Inject, input} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 
-import {Task, TaskStatus} from '../../task.model';
+import {Task, TaskStatus, TaskStatusOptionsToken, TTaskStatusOptions} from '../../task.model';
 import {TasksService} from "../../tasks.service";
 import {TaskServiceToken} from "../../../../main";
 
@@ -28,7 +28,7 @@ export class TaskItemComponent {
     }
   });
 
-  constructor(@Inject(TaskServiceToken) private tasksService: TasksService) {
+  constructor(@Inject(TaskServiceToken) private tasksService: TasksService, @Inject(TaskStatusOptionsToken) public taskStatusOption: TTaskStatusOptions) {
   }
 
   onChangeTaskStatus(taskId: string, status: string) {
