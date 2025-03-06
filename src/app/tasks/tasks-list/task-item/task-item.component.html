@@ -1,7 +1,7 @@
 <article
   [class]="{
     'status-open': task().status === 'OPEN',
-    'status-in-progress': task().status === 'IN_PROGRESS',
+    'status-in-progress': task().status === 'IN-PROGRESS',
     'status-done': task().status === 'DONE'
   }"
 >
@@ -12,11 +12,11 @@
   <p>{{ task().description }}</p>
   <form (ngSubmit)="onChangeTaskStatus(task().id, status.value)">
     <select #status>
-      <option value="open" [selected]="task().status === 'OPEN'">Open</option>
-      <option value="in-progress" [selected]="task().status === 'IN_PROGRESS'">
+      <option [selected]="task().status === 'OPEN'" value="open">Open</option>
+      <option [selected]="task().status === 'IN-PROGRESS'" value="in-progress">
         In-Progress
       </option>
-      <option value="done" [selected]="task().status === 'DONE'">
+      <option [selected]="task().status === 'DONE'" value="done">
         Completed
       </option>
     </select>
