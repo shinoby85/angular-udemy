@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
 
   customInterval$ = new Observable((subscriber) => {
     setInterval(() => {
-      subscriber.next();
+      subscriber.next('');
     }, 2000);
   });
 
