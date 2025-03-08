@@ -15,8 +15,16 @@ export class AppComponent implements OnInit {
   destroyRef = inject(DestroyRef);
 
   customInterval$ = new Observable((subscriber) => {
-    setInterval(() => {
-      subscriber.next('');
+    let timeExecuted = 0;
+    const interval = setInterval(() => {
+      if (timeExecuted > 3) {
+        clearInterval(interval);
+        subscriber.complete();
+        return;
+      }
+      console.log('Emitting new value...');
+      subscriber.next({message: 'New value'});
+      timeExecuted++;
     }, 2000);
   });
 
