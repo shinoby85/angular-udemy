@@ -3,6 +3,7 @@ import {Component, inject, OnInit, signal} from '@angular/core';
 import {PlacesContainerComponent} from '../places-container/places-container.component';
 import {PlacesComponent} from "../places.component";
 import {PlacesService} from "../places.service";
+import {Place} from "../place.model";
 
 @Component({
   selector: 'app-user-places',
@@ -26,6 +27,10 @@ export class UserPlacesComponent implements OnInit {
         this.error.set(error.message);
       })
 
+  }
+
+  onRemovePlace(place: Place) {
+    this.placesService.removeUserPlace(place).subscribe();
   }
 
 }
