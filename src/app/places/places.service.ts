@@ -32,10 +32,16 @@ export class PlacesService {
       );
   }
 
-  addPlaceToUserPlaces(placeId: string) {
+  addPlaceToUserPlaces(place: Place) {
+    const prevPlace = this.userPlaces();
+    if (!prevPlace.some((p) => p.id === place.id)) {
+      this.userPlaces.update(prevPlaces => [...prevPlaces, place]);
+    }
     return this.httpClient.put('http://localhost:3000/user-places', {
-      placeId,
-    });
+      placeId: place.id,
+    }).pipe(
+      catchError(err => throwError(() => new Error('Failed to store selected place.'))),
+    );
   }
 
   removeUserPlace(place: Place) {
