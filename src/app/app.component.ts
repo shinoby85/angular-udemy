@@ -1,62 +1,13 @@
-import {Component, DestroyRef, inject, OnInit, signal} from '@angular/core';
-import {toObservable, toSignal} from "@angular/core/rxjs-interop";
-import {interval, Observable} from "rxjs";
+import { Component } from '@angular/core';
+
+import { AvailablePlacesComponent } from './places/available-places/available-places.component';
+import { UserPlacesComponent } from './places/user-places/user-places.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  templateUrl: './app.component.html'
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css',
+  imports: [AvailablePlacesComponent, UserPlacesComponent],
 })
-export class AppComponent implements OnInit {
-  clickCount = signal(0);
-  clickCount$ = toObservable(this.clickCount);
-  interval$ = interval(1000);
-  intervalSignal = toSignal(this.interval$, {initialValue: 0});
-  destroyRef = inject(DestroyRef);
-
-  customInterval$ = new Observable((subscriber) => {
-    let timeExecuted = 0;
-    const interval = setInterval(() => {
-      if (timeExecuted > 3) {
-        clearInterval(interval);
-        subscriber.complete();
-        return;
-      }
-      console.log('Emitting new value...');
-      subscriber.next({message: 'New value'});
-      timeExecuted++;
-    }, 2000);
-  });
-
-  ngOnInit() {
-    // interval(1000)
-    //   .pipe(
-    //     map(num => num * 2)
-    //   )
-    //   .subscribe({
-    //     next: (value) => {
-    //       console.log(value);
-    //     },
-    //     complete: () => {
-    //     },
-    //     error: () => {
-    //     }
-    //   });
-    this.customInterval$.subscribe({
-      next: (val) => console.log(val),
-      complete: () => {
-        console.log('COMPLETED!');
-      },
-    })
-    const subscription = this.clickCount$.subscribe({
-      next: value => console.log(`Clicked button ${this.clickCount()} times.`),
-    });
-    this.destroyRef.onDestroy(() => {
-      subscription.unsubscribe();
-    })
-  }
-
-  onClick() {
-    this.clickCount.update((prevCount) => prevCount + 1);
-  }
-}
+export class AppComponent {}
