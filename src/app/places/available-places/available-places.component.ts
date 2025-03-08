@@ -4,7 +4,7 @@ import {Place} from '../place.model';
 import {PlacesComponent} from '../places.component';
 import {PlacesContainerComponent} from '../places-container/places-container.component';
 import {HttpClient} from "@angular/common/http";
-import {catchError, map, throwError} from "rxjs";
+import {PlacesService} from "../places.service";
 
 @Component({
   selector: 'app-available-places',
@@ -15,17 +15,14 @@ import {catchError, map, throwError} from "rxjs";
 })
 export class AvailablePlacesComponent implements OnInit {
   places = signal<Place[] | undefined>(undefined);
+  placesService = inject(PlacesService);
   isFetching = signal(false);
   error = signal('');
   httpClient = inject<HttpClient>(HttpClient);
 
   ngOnInit() {
     this.isFetching.set(true);
-    this.httpClient.get<{ places: Place[] }>('http://localhost:3000/places')
-      .pipe(
-        map((respData: { places: Place[] }) => respData.places),
-        catchError(err => throwError(() => new Error('Something went wrong fetching the available places. Please try again later.'))),
-      )
+    this.placesService.loadAvailablePlaces()
       .subscribe(places => {
         this.places.set(places);
         this.isFetching.set(false);
@@ -33,5 +30,9 @@ export class AvailablePlacesComponent implements OnInit {
         this.error.set(error.message);
       })
 
+  }
+
+  onSelectPlace(selectedPlace: Place) {
+    this.placesService.addPlaceToUserPlaces(selectedPlace.id).subscribe();
   }
 }
