@@ -98,10 +98,11 @@
     </div>
   </div>
 
-  <fieldset>
+  <fieldset formArrayName="source">
     <legend>How did you find us?</legend>
     <div class="control">
       <input
+        formControlName="0"
         id="google"
         name="acquisition"
         type="checkbox"
@@ -112,6 +113,7 @@
 
     <div class="control">
       <input
+        formControlName="1"
         id="friend"
         name="acquisition"
         type="checkbox"
@@ -122,6 +124,7 @@
 
     <div class="control">
       <input
+        formControlName="2"
         id="other"
         name="acquisition"
         type="checkbox"
