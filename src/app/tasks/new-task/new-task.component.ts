@@ -1,7 +1,7 @@
-import { Component, inject, input, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {Component, inject, input, signal} from '@angular/core';
+import {FormsModule} from '@angular/forms';
 
-import { TasksService } from '../tasks.service';
+import {TasksService} from '../tasks.service';
 
 @Component({
   selector: 'app-new-task',
