@@ -17,6 +17,7 @@ export class NewTaskComponent {
   enteredTitle = signal('');
   enteredSummary = signal('');
   enteredDate = signal('');
+  submitted = signal(false);
   private tasksService = inject(TasksService);
 
   onSubmit() {
@@ -28,11 +29,15 @@ export class NewTaskComponent {
       },
       this.userId()
     );
+    this.submitted.set(true);
     this.router.navigate(['/users', this.userId(), 'tasks'], {replaceUrl: true});
   }
 }
 
 export const canLeaveEditPage: CanDeactivateFn<NewTaskComponent> = (component: NewTaskComponent) => {
+  if (component.submitted()) {
+    return true;
+  }
   if (component.enteredTitle() || component.enteredDate() || component.enteredSummary()) {
     return window.confirm('Are you sure you want to leave?');
   }
