@@ -1,8 +1,8 @@
-import { Injectable, signal } from '@angular/core';
+import {afterNextRender, Injectable, signal} from '@angular/core';
 
-import { type NewTaskData } from './task/task.model';
+import {type NewTaskData} from './task/task.model';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({providedIn: 'root'})
 export class TasksService {
   private tasks = signal([
     {
@@ -33,11 +33,13 @@ export class TasksService {
   allTasks = this.tasks.asReadonly();
 
   constructor() {
-    const tasks = localStorage.getItem('tasks');
+    afterNextRender(() => {
+      const tasks = localStorage.getItem('tasks');
 
-    if (tasks) {
-      this.tasks.set(JSON.parse(tasks));
-    }
+      if (tasks) {
+        this.tasks.set(JSON.parse(tasks));
+      }
+    });
   }
 
   addTask(taskData: NewTaskData, userId: string) {
