@@ -1,6 +1,6 @@
 <section>
   <header>
-    <img src="laptop-desk.jpg" alt="A web app running on a laptop desk" />
+    <img alt="A web app running on a laptop desk" src="laptop-desk.jpg"/>
     <h2>Build Web Apps With Angular!</h2>
   </header>
   <p>
@@ -21,7 +21,7 @@
 
 <section>
   <header>
-    <img src="student.jpg" alt="A student learning for an exam" />
+    <img alt="A student learning for an exam" src="student.jpg"/>
     <h2>What Does This Course Offer?</h2>
   </header>
 
@@ -41,4 +41,8 @@
   </p>
 </section>
 
-<app-offer-preview />
+@defer (on viewport) {
+  <app-offer-preview/>
+} @placeholder {
+  <p>We might have an offer...</p>
+}
