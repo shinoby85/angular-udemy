@@ -41,7 +41,7 @@
   </p>
 </section>
 <button #testButton>Test</button>
-@defer (on interaction(testButton)) {
+@defer (on interaction(testButton); prefetch on hover) {
   <app-offer-preview/>
 } @placeholder {
   <p class="fallback">We might have an offer...</p>
