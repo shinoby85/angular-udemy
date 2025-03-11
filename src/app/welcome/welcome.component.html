@@ -40,8 +40,8 @@
     TypeScript concepts which are especially important for Angular developers!
   </p>
 </section>
-
-@defer (on interaction) {
+<button #testButton>Test</button>
+@defer (on interaction(testButton)) {
   <app-offer-preview/>
 } @placeholder {
   <p class="fallback">We might have an offer...</p>
