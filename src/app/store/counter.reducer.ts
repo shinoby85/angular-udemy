@@ -1,3 +1,6 @@
+import {CounterAction, MY_INCREMENT} from "./counter.action";
+import {Action} from "@ngrx/store";
+
 const initialState = 0;
 
 // export const counterReducer = createReducer(
@@ -8,14 +11,14 @@ const initialState = 0;
 // );
 
 //Old variant
-export function counterReducer(state = initialState, action: { type: string; value: number }) {
+export function counterReducer(state = initialState, action: CounterAction | Action) {
   switch (action.type) {
     case '[Counter] Increment':
       return state + 1;
     case '[Counter] Decrement':
       return state - 1;
-    case '[Counter] MyValue':
-      return state + action.value;
+    case MY_INCREMENT:
+      return state + (action as CounterAction).value;
   }
   return state
 }
