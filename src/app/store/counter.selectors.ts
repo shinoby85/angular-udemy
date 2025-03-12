@@ -1,5 +1,8 @@
-import {Selector} from "@ngrx/store";
+import {createSelector, Selector} from "@ngrx/store";
 
 export const selectCount: Selector<{ counter: number }, number> = (state) => state.counter;
 
-export const selectMultipleCounter: Selector<{ counter: number }, number> = (state) => state.counter * 2;
+export const selectMultipleCounter = createSelector(
+  selectCount,
+  (state) => state * 2
+);
