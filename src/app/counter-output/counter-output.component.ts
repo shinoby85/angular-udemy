@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
 import {Observable} from 'rxjs';
-import {Store} from "@ngrx/store";
+import {select, Store} from "@ngrx/store";
 import {AsyncPipe} from "@angular/common";
+import {selectCount, selectMultipleCounter} from "../store/counter.selectors";
 
 @Component({
   selector: 'app-counter-output',
@@ -13,9 +14,10 @@ import {AsyncPipe} from "@angular/common";
   ]
 })
 export class CounterOutputComponent {
-  counter$: Observable<number>;
+  counter$: Observable<number> = this.store.pipe(select(selectCount));
+  multipleCount$: Observable<number> = this.store.pipe(select(selectMultipleCounter));
 
   constructor(private store: Store<{ counter: number }>) {
-    this.counter$ = this.store.select('counter');
+    // this.counter$ = this.store.select('counter');
   }
 }
