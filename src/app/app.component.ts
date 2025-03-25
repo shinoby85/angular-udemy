@@ -30,4 +30,13 @@ export class AppComponent {
   onShrunk() {
     this.shrunkState = 'shrunken';
   }
+
+  animationStarted(event: any) {
+    console.log(event);
+  }
+
+  animationDone(event: any) {
+    console.log(event);
+
+  }
 }
