@@ -41,6 +41,7 @@
       <ul class="list-group">
         @for (item of list; track item) {
           <li
+            [@list2]
             class="list-group-item"
             (click)="onDelete(item)"
             >
