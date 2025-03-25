@@ -1,4 +1,4 @@
-import {animate, keyframes, state, style, transition, trigger} from '@angular/animations';
+import {animate, group, keyframes, state, style, transition, trigger} from '@angular/animations';
 
 export const animationsArray = [
   trigger('divState', [
@@ -29,7 +29,7 @@ export const animationsArray = [
     transition('normal => highlight', animate(300)),
     transition('highlight => normal', animate(800)),
     transition('shrunken <=> *', [
-      animate(300,style({backgroundColor: 'orange'})),
+      animate(300, style({backgroundColor: 'orange'})),
       animate(1000, style({
         borderRadius: '50px'
       })),
@@ -49,7 +49,7 @@ export const animationsArray = [
       animate(300)
     ]),
     transition('* => void', [
-      animate(300,style({
+      animate(300, style({
         opacity: '0',
         transform: 'translateX(100px)',
       }))
@@ -68,7 +68,7 @@ export const animationsArray = [
       animate(300)
     ]),
     transition('* => void', [
-      animate(300,style({
+      animate(300, style({
         opacity: '0',
         transform: 'translateX(100px)',
       }))
@@ -104,10 +104,15 @@ export const animationsArray = [
       ]))
     ]),
     transition('* => void', [
-      animate(300,style({
-        opacity: '0',
-        transform: 'translateX(100px)',
-      }))
+      group([
+        animate(300, style({
+          color: 'red',
+        })),
+        animate(300, style({
+          opacity: '0',
+          transform: 'translateX(100px)',
+        }))
+      ]),
     ]),
   ])
 ]
