@@ -1,42 +1,15 @@
-import {Component} from '@angular/core';
-import {RouterOutlet} from '@angular/router';
-import {animationsArray} from './app.animations';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
-  animations: animationsArray
+  styleUrls: ['./app.component.css'],
+  standalone: false
 })
 export class AppComponent {
-  public state = 'normal';
-  public shrunkState = 'normal';
-  public list = ['Milk', 'Sugar', 'Bread'];
+  loadedFeature = 'recipe';
 
-  onAdd(item: string) {
-    this.list.push(item);
-  }
-
-  onDelete(item: string) {
-    this.list=this.list.filter(i=> i !== item);
-  }
-
-  onAnimate() {
-    this.state = this.state === 'normal' ? 'highlight' : 'normal';
-    this.shrunkState = this.state === 'normal' ? 'highlight' : 'normal';
-  }
-
-  onShrunk() {
-    this.shrunkState = 'shrunken';
-  }
-
-  animationStarted(event: any) {
-    console.log(event);
-  }
-
-  animationDone(event: any) {
-    console.log(event);
-
+  onNavigate(feature: string) {
+    this.loadedFeature = feature;
   }
 }
