@@ -10,6 +10,7 @@ import {AuthService} from './auth.service';
 export class AuthComponent {
   public isLoginMode = true;
   public isLoading = false;
+  public error?: string;
   private _authService = inject(AuthService);
 
   onSwitchMode() {
@@ -34,6 +35,7 @@ export class AuthComponent {
         },
         error: (err) => {
           this.isLoading = false;
+          this.error = err.message || 'An error occurred!';
           console.log(err);
         }
       });
