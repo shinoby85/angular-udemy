@@ -19,7 +19,7 @@ export interface IAuthResponseData {
   providedIn: 'root'
 })
 export class AuthService {
-  user = new Subject<User>();
+  user = new Subject<User | null>();
 
   http = inject(HttpClient);
 
