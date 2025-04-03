@@ -3,6 +3,7 @@ import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {BehaviorSubject, catchError, throwError} from 'rxjs';
 import {User} from './user.model';
 import {tap} from 'rxjs/operators';
+import {Router} from '@angular/router';
 
 const FIREBASE_API_KEY = 'AIzaSyBYc6aiUBH00e6qrVw4TxwjFT2Ajk0d0a4';
 
@@ -22,6 +23,7 @@ export class AuthService {
   user = new BehaviorSubject<User | null>(null);
 
   http = inject(HttpClient);
+  private _router = inject(Router);
 
   signUp(email: string, password: string) {
     return this.http.post<IAuthResponseData>(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${FIREBASE_API_KEY}`, {
@@ -58,6 +60,11 @@ export class AuthService {
         );
       })
     );
+  }
+
+  public logout() {
+    this.user.next(null);
+    this._router.navigate(['/auth']);
   }
 
   private handleAuthentication(email: string, localId: string, idToken: string, expiresIn: number) {

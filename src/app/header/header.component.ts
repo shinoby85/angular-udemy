@@ -37,6 +37,6 @@ export class HeaderComponent implements OnInit {
   }
 
   onLogout() {
-    this._authService.user.next(null);
+    this._authService.logout();
   }
 }
