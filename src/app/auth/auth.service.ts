@@ -44,6 +44,28 @@ export class AuthService {
       );
   }
 
+  autoLogin() {
+    const storageData = localStorage.getItem('userData');
+    if (!storageData) {
+      return;
+    }
+    const userData: {
+      email: string;
+      id: string,
+      _token: string;
+      _tokenExpirationDate: string;
+    } = JSON.parse(storageData);
+    const loadedUser = new User(
+      userData.email,
+      userData.id,
+      userData._token,
+      new Date(userData._tokenExpirationDate)
+    );
+    if (loadedUser) {
+      this.user.next(loadedUser);
+    }
+  }
+
   login(email: string, password: string) {
     return this.http.post<IAuthResponseData>(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${FIREBASE_API_KEY}`, {
       email,
@@ -67,10 +89,11 @@ export class AuthService {
     this._router.navigate(['/auth']);
   }
 
-  private handleAuthentication(email: string, localId: string, idToken: string, expiresIn: number) {
+  private handleAuthentication(email: string, localId: string, token: string, expiresIn: number) {
     const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
-    const user = new User(email, localId, idToken, expirationDate);
+    const user = new User(email, localId, token, expirationDate);
     this.user.next(user);
+    localStorage.setItem('userData', JSON.stringify(user));
   };
 
   private handleError(errorResp: HttpErrorResponse) {
