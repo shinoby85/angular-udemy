@@ -1,4 +1,4 @@
-import {TestBed, waitForAsync} from '@angular/core/testing';
+import {fakeAsync, TestBed, tick, waitForAsync} from '@angular/core/testing';
 
 import {UserComponent} from './user.component';
 import {UserService} from './user.service';
@@ -66,5 +66,16 @@ describe('UserComponent', () => {
     fixture.whenStable().then(() => {
       expect(component.data).toBe('Data');
     });
+  }));
+  it('should fetch data successfully if called asynchronously with tick', fakeAsync(() => {
+    let fixture = TestBed.createComponent(UserComponent);
+    let component = fixture.debugElement.componentInstance;
+    let dataService = fixture.debugElement.injector.get(DataService);
+    let spy = spyOn(dataService, 'getDetails')
+      .and.returnValue(Promise.resolve('Data'));
+    fixture.detectChanges();
+    tick(1500);
+    expect(component.data).toBe('Data');
+
   }));
 });
